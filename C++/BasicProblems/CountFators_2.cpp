@@ -32,7 +32,7 @@ int CountFactors_2::_countFactors(int _nums){
   
   for(int itr=1; itr<=sqrt(_nums); itr++){
     if(_nums%itr == 0){
-      if(_nums%itr == itr){
+      if(_nums/itr == itr){
         _count_of_factors++;
       }else{
         _count_of_factors += 2;
