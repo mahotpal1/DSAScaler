@@ -13,7 +13,8 @@ class Solution{
 public:
   Solution(){}
   virtual ~Solution(){}
-  virtual int countFactors2(int A) = 0;
+  int _countFactors(int A);
+  int isPrime(int _nums);
 };
 
 #endif

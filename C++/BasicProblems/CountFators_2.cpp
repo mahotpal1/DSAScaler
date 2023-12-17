@@ -45,7 +45,7 @@ int CountFactors_2::_countFactors(int _nums){
 
 
 int main(){
-  CountFactors_2 *c;
+  CountFactors_2 *c = new CountFactors_2();
   std::cout << "Total factors of 6 : " << c->_countFactors(6) << std::endl;
 
   return 0;
