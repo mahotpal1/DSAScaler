@@ -14,9 +14,36 @@ class RangeSumQuerry{
 public:
   RangeSumQuerry(){}
   ~RangeSumQuerry(){}
-  int solve(std::vector<int> &arr, std::vector<std::vector<int>> &B);
+  std::vector<int> solve(std::vector<int> &arr, std::vector<std::vector<int>> &B);
 };
 
-int RangeSumQuerry::solve(std::vector<int> &arr, std::vector<std::vector<int>> &B){
-  std::   vector<int>
+std::vector<int> RangeSumQuerry::solve(std::vector<int> &arr, std::vector<std::vector<int>> &B){
+  std::vector<int> pf(arr.size());
+  pf[0] = arr[0];
+  for(int i=1; i<arr.size(); i++){
+    pf[i] = arr[i]+pf[i-1];
+  }
+  std::vector<int> ans(B.size());
+  for(int i=0; i<B.size(); i++){
+    if(B[i][0] == 0){
+      ans[i] = pf[B[i][1]];
+    }else{
+      ans[i] = pf[B[i][1]]-pf[B[i][0]-1];
+    }
+  }
+  return ans;
+}
+
+int main(){
+  std::vector<int> arr{2, 2, 2};
+  std::vector<std::vector<int>> B{{0, 0}, {1, 2}};
+
+  RangeSumQuerry *r = new RangeSumQuerry();
+  std::cout << "Sum of Elements in the given range : " << std::endl;
+
+  for(auto x : r->solve(arr, B)){
+    std::cout << x << " ";
+  }
+
+  return 0; 
 }
