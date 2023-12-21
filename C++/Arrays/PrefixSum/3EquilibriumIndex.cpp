@@ -25,7 +25,7 @@ int EquillibriumIndex::solve(std::vector<int> &arr){
     for(int i =1; i<arr.size(); i++){
         pf[i] = arr[i] + pf[i-1];
     }
-
+    //if(pf[i]-A[i] == pf[A.size()-1]-pf[i])
     for(int i=0; i<arr.size(); i++){
         if(pf[i-1] == pf[arr.size()-1]-pf[i]){
             return i;
