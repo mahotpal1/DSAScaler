@@ -32,13 +32,24 @@ std::vector<int> EvenNumbersInRange::solve(std::vector<int> &arr,
     }
 
     for(int i=0; B.size(); i++){
-        ans[i] = pf[B]
+        if(B[i][0] == 0){
+            ans[i] = pfEvenCount[arr.size()-1];
+        }else{
+            ans[i] = pfEvenCount[B[i][1]] - pf[B[i][0]-1];
+        }
     }
-
     return ans;
 }
 
 int main(){
     EvenNumbersInRange *e = new EvenNumbersInRange();
+    std::vector<int> arr{1, 2, 3, 4, 5};
+    std::vector<std::vector<int>> B{ {0, 2}, {2, 4}, {1, 4}};
+    std::cout << "For the given range of querries individual number of primes are : " << std::endl;
+    for(auto x: e->solve(arr, B)){
+        std::cout << x << " ";
+    }
+    std::endl;
 
+    return 0;
 }
