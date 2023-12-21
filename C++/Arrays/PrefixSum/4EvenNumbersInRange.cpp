@@ -13,29 +13,24 @@ class EvenNumbersInRange{
 public :
     EvenNumbersInRange(){}
     ~EvenNumbersInRange(){}
-    int solve(std::vector<int> &arr, std::vector<std::vector<int>> &B);
+    std::vector<int> solve(std::vector<int> &arr, std::vector<std::vector<int>> &B);
 };
 
-std::vector<int> EvenNumbersInRange::solve(std::vector<int> &arr, 
-                                std::vector<std::vector<int>> &B){
+std::vector<int> EvenNumbersInRange::solve(std::vector<int> &arr, std::vector<std::vector<int>> &B){
     std::vector<int> ans(B.size());
-    std::vector<int> pfEvenCount{arr.size()-1};
-    if(arr[0]%2 == 0){
-        pfEvenCount[0] = 1;
-    }
-    int count = 1;
-    for(int i=1; i<arr.size(); i++){
+    std::vector<int> pfEvenCount(arr.size());
+    int count = 0;
+    for(int i=0; i<arr.size(); i++){
         if(arr[i]%2 == 0){
             count ++;
-            pfEvenCount[i] = count;
         }
+        pfEvenCount[i] = count;
     }
-
-    for(int i=0; B.size(); i++){
+    for(int i=0; i<B.size(); i++){
         if(B[i][0] == 0){
-            ans[i] = pfEvenCount[arr.size()-1];
+            ans[i] = pfEvenCount[B[i][1]];
         }else{
-            ans[i] = pfEvenCount[B[i][1]] - pf[B[i][0]-1];
+            ans[i] = pfEvenCount[B[i][1]] - pfEvenCount[B[i][0]-1];
         }
     }
     return ans;
@@ -44,12 +39,12 @@ std::vector<int> EvenNumbersInRange::solve(std::vector<int> &arr,
 int main(){
     EvenNumbersInRange *e = new EvenNumbersInRange();
     std::vector<int> arr{1, 2, 3, 4, 5};
-    std::vector<std::vector<int>> B{ {0, 2}, {2, 4}, {1, 4}};
+    std::vector<std::vector<int>> B{{0, 2},{2, 4},{1, 4}};
     std::cout << "For the given range of querries individual number of primes are : " << std::endl;
     for(auto x: e->solve(arr, B)){
         std::cout << x << " ";
     }
-    std::endl;
+    std::cout << std::endl;
 
     return 0;
 }
