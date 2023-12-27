@@ -31,5 +31,19 @@ class AntiDiagonals{
   public : 
     AntiDiagonals(){}
     ~AntiDiagonals(){}
-    int solve(std::vector<std::vector<int>> &arr);
+    std::vector<std::vector<int>> solve(std::vector<std::vector<int>> &arr);
 };
+
+std::vector<std::vector<int>> solve(std::vector<std::vector<int>> &arr){
+  int n=arr.size(), m=arr[0].size();
+  std::vector<std::vector<int>> ans(2*arr.size()-1, std::vector<int> (arr[0].size(), 0));
+  for(int i=0;i<m;i++){
+    int r=0, c=i;
+    while(r<n && c>=0){
+      ans[i][r] = arr[r][c];
+      r++;c--;
+    }
+  }
+
+  
+}
